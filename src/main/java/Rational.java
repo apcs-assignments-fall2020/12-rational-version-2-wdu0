@@ -69,22 +69,27 @@ public class Rational
     // Returns whether or not the Rational is currently simplified
     // or not
     public boolean isSimplified() { 
-        return false; // YOUR CODE HERE
+        Rational s = simplify(this);
+        int nu = this.numerator;
+        int de = this.denominator;
+        return (s.numerator == nu)&&(s.denominator == de);
     }
 
     // Calculates the double value of our Rational
     public double calculateDecimalValue() { 
-        return 0.0; // YOUR CODE HERE
+        return ((double)this.numerator) / ((double)this.denominator);
     }
 
     // Returns the Rational we get from raising  the rational number to an integer power
     public Rational pow(int exponent) {
-        return null; // YOUR CODE HERE
+        this.numerator = (int) Math.pow(this.numerator, exponent);
+        this.denominator = (int) Math.pow(this.denominator, exponent);
+        return this;
     }
 
     // Checks to see if either the numerator or denominator match a given number
     public boolean matches(int x) {
-        return false; // YOUR CODE HERE
+        return (this.numerator == x) || (this.denominator == x);
     }
 
 
@@ -94,18 +99,30 @@ public class Rational
     // Methods you'll write for homework:
     // Returns whether or not the Rational is a negative number
     public boolean isNegative() { 
-        return false; // YOUR CODE HERE
+        if ((this.numerator > 0 && this.denominator > 0) 
+            || (this.numerator < 0 && this.denominator < 0)) {
+            return false;
+        } else {
+            return true;
+        }    
     }
 
     // Calculates the reciprocal of a Rational number.
     // The reciprocal of 3/4 is 4/3, the reciprocal of 1/2 is 2/1
     public Rational reciprocal() {
-        return null; // YOUR CODE HERE
+        Rational re = new Rational(this.denominator, this.numerator);
+        return re;
     }
 
     // Checks whether the current Rational is the exactly the same as other
     public boolean equals(Rational other) {
-        return false; // YOUR CODE HERE
+        Rational s = simplify(this);
+        Rational o = simplify(other);
+        if ((s.numerator == o.numerator) && (s.denominator == o.denominator)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
